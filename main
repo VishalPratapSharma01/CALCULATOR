@@ -1,0 +1,127 @@
+# MODULES
+from tkinter import *
+
+# FUNCTIONS
+def click(event):
+    global scValue
+    text = event.widget.cget("text")
+    if text == "=":
+        if scValue.get().isdigit():
+            value = int(scValue.get())
+        else:
+            try:
+                value = eval(screenEntry.get())
+            except Exception as e:
+                print(e)
+                value = "Error"
+        scValue.set(value)
+        screenEntry.update()
+    elif text == "C":
+        scValue.set("")
+        screenEntry.update()
+    else:
+        scValue.set(scValue.get() + text)
+        screenEntry.update()
+
+# WINDOW
+root = Tk()
+root.geometry("530x800")
+root.title("Calculator")
+root.configure(background="black")
+root.wm_iconbitmap("Calculator.ico")
+
+# VARIABLES
+scValue = StringVar()
+scValue.set("")
+
+# MAIN FRAME
+main_frame = Frame(root, bg="silver", height=700, width=100)
+main_frame.pack(pady=20, fill=X, padx=20)
+
+# ENTRY
+screenEntry = Entry(main_frame, textvar=scValue, font=" Courier 30 bold", bg="#70adb0", bd=20)
+screenEntry.pack(fill=X, padx=20, pady=30)
+
+# FRAME 1
+frame1 = Frame(main_frame, bg="#0f2326")
+frame1.pack(anchor="nw", padx=20)
+
+# BUTTONS 7,8,9,CLEAR
+button9 = Button(frame1, text="7", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button9.pack(side=LEFT, padx=5, pady=5, fill=X)
+button9.bind("<Button-1>", click)
+button8 = Button(frame1, text="8", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button8.pack(side=LEFT, fill=X, padx=0, pady=0)
+button8.bind("<Button-1>", click)
+button7 = Button(frame1, text="9", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button7.pack(side=LEFT, padx=5, pady=0, fill=X)
+button7.bind("<Button-1>", click)
+buttonClear = Button(frame1, text="C", padx=20, pady=20, bd=5, bg="#f84826", font=" Courier 30 bold")
+buttonClear.pack(side=LEFT, padx=5)
+buttonClear.bind("<Button-1>", click)
+
+# FRAME 2
+frame2 = Frame(main_frame, bg="#0f2326")
+frame2.pack(anchor="nw", padx=20)
+
+# BUTTONS 4,5,6,PLUS
+button4 = Button(frame2, text="4", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button4.pack(side=LEFT, padx=5, pady=0)
+button4.bind("<Button-1>", click)
+button5 = Button(frame2, text="5", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button5.pack(side=LEFT, padx=0)
+button5.bind("<Button-1>", click)
+button6 = Button(frame2, text="6", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button6.pack(side=LEFT, padx=5, pady=0)
+button6.bind("<Button-1>", click)
+buttonPlus = Button(frame2, text="+", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+buttonPlus.pack(side=LEFT, padx=5)
+buttonPlus.bind("<Button-1>", click)
+
+# FRAME 3
+frame3 = Frame(main_frame, bg="#0f2326")
+frame3.pack(anchor="nw", padx=20)
+
+# BUTTONS 1,2,3,MINUS
+button1 = Button(frame3, text="1", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button1.pack(side=LEFT, padx=5, pady=0)
+button1.bind("<Button-1>", click)
+button2 = Button(frame3, text="2", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button2.pack(side=LEFT, padx=0, pady=0)
+button2.bind("<Button-1>", click)
+button3 = Button(frame3, text="3", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button3.pack(side=LEFT, padx=5, pady=0)
+button3.bind("<Button-1>", click)
+buttonMinus = Button(frame3, text="-", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+buttonMinus.pack(side=LEFT, padx=5, pady=5)
+buttonMinus.bind("<Button-1>", click)
+
+# FRAME 4
+frame4 = Frame(main_frame, bg="#0f2326")
+frame4.pack(anchor="nw", padx=20)
+
+# BUTTONS 0,DOT,DIVIDE,MULTIPLY
+button0 = Button(frame4, text="0", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+button0.pack(side=LEFT, padx=5, pady=0)
+button0.bind("<Button-1>", click)
+buttonDot = Button(frame4, text=".", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+buttonDot.pack(side=LEFT, padx=0, pady=0)
+buttonDot.bind("<Button-1>", click)
+buttonDivide = Button(frame4, text="/", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+buttonDivide.pack(side=LEFT, padx=5, pady=0)
+buttonDivide.bind("<Button-1>", click)
+buttonMulti = Button(frame4, text="*", padx=20, pady=20, bd=5, font=" Courier 30 bold")
+buttonMulti.pack(side=LEFT, padx=5, pady=0)
+buttonMulti.bind("<Button-1>", click)
+
+# FRAME 5
+frame5 = Frame(main_frame, bg="#0f2326")
+frame5.pack(anchor="nw", padx=20)
+
+# BUTTON EQUAL
+buttonEqual = Button(frame5, text="=", padx=181, bg="#008003", bd=10, pady=5, font=" Courier 30 bold")
+buttonEqual.pack(side=LEFT, padx=5, pady=5)
+buttonEqual.bind("<Button-1>", click)
+
+# MAINLOOP
+root.mainloop()
